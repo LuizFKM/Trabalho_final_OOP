@@ -8,17 +8,9 @@ package com.luizfrancisco.cinema.model;
  *
  * @author User
  */
-public class Ator{
-    private String nome;
-    
-
-    public Ator(String nome) {
-        this.nome = nome;
+public class SalaStanleyKubrick extends Sala {
+    public SalaStanleyKubrick(int salaID, int assentosDisponiveis){
+        super(salaID, assentosDisponiveis);
     }
 
-    public String getNome() {
-        return nome;
-    }
-    
-    
 }
