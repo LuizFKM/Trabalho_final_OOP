@@ -9,8 +9,8 @@ package com.luizfrancisco.cinema.model;
  * @author User
  */
 public class SalaStanleyKubrick extends Sala {
-    public SalaStanleyKubrick(int salaID, int assentosDisponiveis){
-        super(salaID, assentosDisponiveis);
+    public SalaStanleyKubrick(int salaID, int assentosDisponiveis, String nomeSala){
+        super(salaID, assentosDisponiveis, nomeSala);
     }
 
 }

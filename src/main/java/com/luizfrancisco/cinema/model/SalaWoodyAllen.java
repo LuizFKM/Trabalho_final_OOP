@@ -9,11 +9,9 @@ package com.luizfrancisco.cinema.model;
  * @author User
  */
 public class SalaWoodyAllen extends Sala {
-    public SalaWoodyAllen(int salaID, int assentosDisponiveis){
-        super(salaID, assentosDisponiveis);
+    public SalaWoodyAllen(int salaID, int assentosDisponiveis, String nomeSala){
+        super(salaID, assentosDisponiveis, nomeSala);
     }
     
-    public String getSala(){
-        return "Sala Woody Allen";
-    }
+   
 }
