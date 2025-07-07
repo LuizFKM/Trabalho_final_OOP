@@ -22,7 +22,7 @@ public class Sessao {
     }
     
     public void exibirSessao() {
-        System.out.println("Sessão às " + horario + " na sala " + sala.getSalaID());
+        System.out.println("Sessao as " + horario + " na sala " + sala.getSalaNome());
         System.out.println("Filme: ");
         filme.listaDeAtores();
         
