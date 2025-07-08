@@ -30,7 +30,7 @@ public class Filme {
     }
     
     public void listaDeAtores(){
-        System.out.println("Elenco de " + tituloFilme + ":");
+        System.out.println("Elenco: ");
         for (Ator ator : elenco){
             System.out.println("- "+ ator.getNome());
         }
