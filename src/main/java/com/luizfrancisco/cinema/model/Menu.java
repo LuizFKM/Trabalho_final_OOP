@@ -4,8 +4,7 @@
  */
 package com.luizfrancisco.cinema.model;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 /**
@@ -21,12 +20,16 @@ public class Menu {
     private Sessao s1, s2, s3;
     
     int escolha = 0;
-    int assentos = 0;
+    int quantidadeDeIngressos = 0;
+    int entrada;
     
-    public int MenuFilmes(){   
+    public int MenuFilmes(){
+        
+    boolean sucesso;
         
     Scanner menu = new Scanner(System.in);
     Scanner compra = new Scanner(System.in);
+    Scanner tipoDeEntrada = new Scanner(System.in);
 
     Ator tomCruise = new Ator("Tom Cruise");
     Ator penelopeCruz = new Ator("Penelope Cruz");
@@ -34,7 +37,7 @@ public class Menu {
     vanillaSky.adicionarAtor(tomCruise);
     vanillaSky.adicionarAtor(penelopeCruz);
     
-    s1 = new Sessao(vanillaSky, sk, "15:00");
+
     
     Ator owenWilson = new Ator("Owen Wilson");
     Ator rachelMcAdams = new Ator("Rachel McAdams");
@@ -42,7 +45,7 @@ public class Menu {
     meiaNoiteParis.adicionarAtor(owenWilson);
     meiaNoiteParis.adicionarAtor(rachelMcAdams);
     
-    s2 = new Sessao(meiaNoiteParis, wa, "17:00");
+
     
     Ator jonathanRhysMeyers = new Ator("Jonathan Rhys Meyers");
     Ator scarlettJohansson = new Ator("Scarlett Johansson");
@@ -50,9 +53,11 @@ public class Menu {
     matchPoint.adicionarAtor(jonathanRhysMeyers);
     matchPoint.adicionarAtor(scarlettJohansson);
     
-    s3 = new Sessao(matchPoint, wa, "17:00");
+    s1 = new Sessao(vanillaSky, sk, "15:00");
+    s2 = new Sessao(meiaNoiteParis, wa, "15:00");
+    s3 = new Sessao(matchPoint, wa, "18:00");
 
-        
+      
         do {
             System.out.println("Filmes em cartaz: \n");
             System.out.println("1 - Vanilla Sky");
@@ -63,38 +68,56 @@ public class Menu {
             
             switch (escolha) {
                 case 1:
-                    if((sk.getAssentosDisponiveis() != 0)){
-                        System.out.println("Voce escolheu Vanilla Sky");
-                        System.out.println("Lugares disponiveis: " + sk.getAssentosDisponiveis());
-                        System.out.println("Quantidade de ingressos: ");
-                        assentos = compra.nextInt();
-                        Comprovante(escolha);
+                    System.out.println("Você escolheu Vanilla Sky");
+                    System.out.println("Lugares disponíveis: " + s1.getAssentosDisponiveis());
+                    System.out.println("Tipo de entrada: 1 - Meia entrada - 2 - Inteira");
+                    entrada = tipoDeEntrada.nextInt();
+                    System.out.println("Quantidade de ingressos: ");
+                    quantidadeDeIngressos = compra.nextInt();
+
+                    sucesso = s1.venderIngressos(quantidadeDeIngressos, entrada);
+
+                    if (sucesso) {
+                        s1.exibirSessao();
                     } else {
-                        System.out.println("Sessao esgotada");
-                    }
-                    
-                    
-                    break;
-                case 2:
-                    if ((wa.getAssentosDisponiveis() != 0)) {
-                        System.out.println("Voce escolheu Meia-noite em Paris");
-                        System.out.println("Quantidade de ingressos: ");
-                        assentos = compra.nextInt();
-                        Comprovante(escolha);
-                    } else {
-                    System.out.println("Sessao esgotada");
-                    }
-                    break;
-                case 3:
-                    if ((wa.getAssentosDisponiveis() != 0)) {
-                        System.out.println("Voce escolheu Match Point");
-                        System.out.println("Quantidade de ingressos: ");
-                        assentos = compra.nextInt();
-                        Comprovante(escolha);
-                    } else {
-                        System.out.println("Sessao esgotada");
+                        System.out.println("Sessao esgotada.");
                     }
                         break;
+                case 2:
+                        
+                        System.out.println("Voce escolheu Meia-noite em Paris");
+                        System.out.println("Lugares disponiveis: " + s2.getAssentosDisponiveis());
+                        System.out.println("Tipo de entrada: 1 - Meia entrada - 2 Inteira");
+                        entrada = tipoDeEntrada.nextInt();
+                        System.out.println("Quantidade de ingressos: ");
+                        quantidadeDeIngressos = compra.nextInt();
+                        
+                        sucesso = s2.venderIngressos(quantidadeDeIngressos, entrada);
+                        
+                        if(sucesso){
+                            s2.exibirSessao();
+                        } else {
+                            System.out.println("Sessao esgotada.");
+                        }
+
+                    break;
+                case 3:
+                        
+                        System.out.println("Voce escolheu Match Point");
+                        System.out.println("Lugares disponiveis: " + s3.getAssentosDisponiveis());
+                        System.out.println("Tipo de entrada: 1 - Meia entrada - 2 Inteira");
+                        entrada = tipoDeEntrada.nextInt();
+                        System.out.println("Quantidade de ingressos: ");
+                        quantidadeDeIngressos = compra.nextInt();
+                        
+                        sucesso = s3.venderIngressos(quantidadeDeIngressos, entrada);
+                        
+                        if(sucesso){
+                            s3.exibirSessao();
+                        } else {
+                            System.out.println("Sessao esgotada.");
+                        }
+                    break;
                 case 0:
                     System.out.println("Encerrando...");
                     break;
@@ -108,15 +131,12 @@ public class Menu {
     public void Comprovante(int escolha){
         switch (escolha) {
             case 1:
-                sk.atualizaAssentos(assentos);
                 s1.exibirSessao();
                 break;
             case 2:
-                wa.atualizaAssentos(assentos);
                 s2.exibirSessao();
                 break;
             case 3:
-                wa.atualizaAssentos(assentos);
                 s3.exibirSessao();
                 break;
         }

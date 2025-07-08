@@ -10,13 +10,13 @@ package com.luizfrancisco.cinema.model;
  */
 public abstract class Sala {
     private int salaID;
-    private int assentosDisponiveis;
+    private int capacidadeTotal;
     private String nomeSala;
     
    
     
-    public Sala(int salaID, int assentosDisponiveis, String nomeSala){
-        this.assentosDisponiveis = assentosDisponiveis;
+    public Sala(int salaID, int capacidadeTotal, String nomeSala){
+        this.capacidadeTotal = capacidadeTotal;
         this.salaID = salaID;
         this.nomeSala = nomeSala;
         
@@ -25,25 +25,22 @@ public abstract class Sala {
     public int getSalaID() {
         return salaID;
     }
+    
+    public int getCapacidadeTotal() {
+        return capacidadeTotal;
+    }
 
     public String getSalaNome(){
         return nomeSala;
     }
 
     public int getAssentosDisponiveis() {
-        return assentosDisponiveis;
+        return capacidadeTotal;
     }
 
     public void setSalaID(int salaID) {
         this.salaID = salaID;
     }
 
-    public void atualizaAssentos(int vendidos){
-        if(vendidos <= assentosDisponiveis){
-            this.assentosDisponiveis -= vendidos;
-        } else {
-            System.out.println("Quantidade solicitada maior que a de lugares disponíveis.");
-        }
-    }
 
 }
